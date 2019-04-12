@@ -5,11 +5,15 @@ package FileIO;
 // Author:Kencin <myzincx@gmail.com>
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 
 public class SortFile {
-    private final static String INPUT_FILE = "input.txt", OUTPUT_FILE = "output.txt";
+    private final static String INPUT_FILE = "input.txt", OUTPUT_FILE = "output.txt",
+            INPUT_FILE_DISTINCT = "input_distinct.txt";
     private int num_of_nums;
 
     public static void main(String[] args){
@@ -24,9 +28,38 @@ public class SortFile {
     public void generate_input(){
         Random random = new Random(1223);
         try {
-            BufferedWriter writer = new BufferedWriter (new OutputStreamWriter(new FileOutputStream (INPUT_FILE),"UTF-8"));
+            BufferedWriter writer = new BufferedWriter (new OutputStreamWriter(new FileOutputStream (INPUT_FILE),StandardCharsets.UTF_8));
             for(int i = 0; i < num_of_nums; i++){
                 writer.write(random.nextInt(num_of_nums) + " ");
+            }
+            writer.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void generate_input_distinct(){
+        int[] x = new int[num_of_nums*5];
+        for(int i = 0; i < num_of_nums*5; i++)
+        {
+            x[i] = i;
+        }
+        Random random = new Random();
+        for(int i = 0; i < num_of_nums*5; i++)
+        {
+            int in = random.nextInt(num_of_nums*5 - i) +i;
+            int t = x[in];
+            x[in] = x[i];
+            x[i] = t;
+        }
+//        for (int n:x){
+//            System.out.print(n +" ");
+//        }
+        try {
+            BufferedWriter writer = new BufferedWriter (new OutputStreamWriter(new FileOutputStream (INPUT_FILE), StandardCharsets.UTF_8));
+            for(int i = 0; i < num_of_nums; i++){
+                writer.write(x[i] + " ");
             }
             writer.close();
         }
@@ -58,8 +91,8 @@ public class SortFile {
     public void generate_output(int [] nums){
         try{
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(OUTPUT_FILE)));
-            for(int i = 0;i<nums.length;i++){
-                writer.write(nums[i] + " ");
+            for(int n:nums){
+                writer.write(n + " ");
             }
             writer.close();
         }

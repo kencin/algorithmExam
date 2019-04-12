@@ -21,16 +21,16 @@ public class MergeSort {
         //}
     //}
 
-    public int[] divided(int [] arrs){
+    public int[] start_sort(int [] arrs){
 
         if(arrs.length < 2) return arrs;
         int mid = arrs.length / 2;
         int [] left = Arrays.copyOfRange(arrs, 0, mid);
         int [] right = Arrays.copyOfRange(arrs, mid, arrs.length);
-        return merge(divided(left),divided(right));
+        return merge(start_sort(left), start_sort(right));
     }
 
-    public int[] merge(int[] left, int[] right) {
+    private int[] merge(int[] left, int[] right) {
         //for(int i = 0; i<left.length;i++){
          //   System.out.print(left[i] + "  ");
         //}

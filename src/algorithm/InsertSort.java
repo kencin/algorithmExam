@@ -4,15 +4,9 @@ package algorithm;// Exam1_sort
 // Author:Kencin <myzincx@gmail.com>
 
 public class InsertSort {
-    private int []arr;
-
-    public InsertSort(int []nums){
-        arr = nums;
-    }
-
-    public int[] sort(){
-        int key, j;
+    public int[] start_sort(int []arr){
         long start_time  = System.currentTimeMillis();
+        int key, j;
         for(int i = 1;i < arr.length; i++){
             key = arr[i];
             j = i -1;
@@ -24,11 +18,5 @@ public class InsertSort {
         }
         System.out.println("Insert sort time used: " + (System.currentTimeMillis() - start_time));
         return arr;
-    }
-
-    public void print(){
-        for(int i = 0;i < arr.length; i++){
-            System.out.print(arr[i] + " ");
-        }
     }
 }

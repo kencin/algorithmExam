@@ -1,7 +1,12 @@
 package algorithm;
 
-public class QuickSort(){
-	public int[] sort(int num[], int left, int right) {
+public class QuickSort{
+
+	public int[] start_sort(int []num){
+		return sort(num, 0, num.length-1);
+	}
+
+	private int[] sort(int []num, int left, int right) {
 		if (left <right) {
 			int index = partition(num, left, right);
 			sort(num, left, index-1);
@@ -10,7 +15,7 @@ public class QuickSort(){
 		return num;
 	}
 
-	public int partition(int[] num, int left, int right) {
+	private int partition(int[] num, int left, int right) {
 		if(num==null || num.length<=0 || left<0 || right>=num.length){
 			return 0;
 		}
@@ -29,7 +34,7 @@ public class QuickSort(){
 		return left;
 	}
 
-	public void swap(int[] num, int left, int right) {
+	private void swap(int[] num, int left, int right) {
 		int temp = num[left];
 		num[left] = num[right];
 		num[right] = temp;
