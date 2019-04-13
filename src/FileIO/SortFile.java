@@ -40,15 +40,13 @@ public class SortFile {
     }
 
     public void generate_input_distinct(){
-        int[] x = new int[num_of_nums*5];
-        for(int i = 0; i < num_of_nums*5; i++)
-        {
-            x[i] = i;
-        }
+    	int the_random_nums = num_of_nums * 5;
+        int[] x = new int[the_random_nums];
+        for(int i = 0; i < the_random_nums; i++) x[i] = i;
         Random random = new Random();
-        for(int i = 0; i < num_of_nums*5; i++)
+        for(int i = 0; i < the_random_nums; i++)
         {
-            int in = random.nextInt(num_of_nums*5 - i) +i;
+            int in = random.nextInt(the_random_nums - i) +i;
             int t = x[in];
             x[in] = x[i];
             x[i] = t;
