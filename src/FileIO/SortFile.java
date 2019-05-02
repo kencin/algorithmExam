@@ -30,7 +30,8 @@ public class SortFile {
         try {
             BufferedWriter writer = new BufferedWriter (new OutputStreamWriter(new FileOutputStream (INPUT_FILE),StandardCharsets.UTF_8));
             for(int i = 0; i < num_of_nums; i++){
-                writer.write(random.nextInt(num_of_nums) + " ");
+                int num = random.nextInt(num_of_nums) - random.nextInt(num_of_nums);
+                writer.write(num + " ");
             }
             writer.close();
         }
